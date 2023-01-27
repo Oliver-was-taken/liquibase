@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Oliver Jenny
+      changes:
+        - createTable: # Task 4
+            tableName: comments
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: article_id
+                  type: uuid
+              - column:
+                  name: text
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+      rollback: # Task 10
+        - dropTable:
+            tableName: comments

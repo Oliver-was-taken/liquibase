@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Oliver Jenny
+      changes:
+        - modifyDataType: # Task 1
+            tableName: article
+            columnName: text
+            newDataType: TEXT
+        - renameTable: # Task 2
+            oldTableName: article
+            newTableName: articles
+        - addColumn: # Task 3
+            tableName: articles
+            column:
+              name: created_ts
+              type: DATETIME
+              defaultValue: ${NOW}
+        - addColumn: # Task 3
+            tableName: articles
+            column:
+              name: version
+              type: int
+              defaultValue: 1
+      rollback: # Task 10
+        - renameTable:
+            oldTableName: articles
+            newTableName: article
+        - modifyDataType:
+            tableName: article
+            columnName: text
+            newDataType: varchar(255)
+        - dropColumn:
+            tableName: article
+            columnName: created_ts
+        - dropColumn:
+            tableName: article
+            columnName: version
+

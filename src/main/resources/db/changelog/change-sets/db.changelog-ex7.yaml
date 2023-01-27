@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet: # Task 7
+      id: 5
+      author: Oliver Jenny
+      changes:
+        - insert:
+            tableName: articles
+            columns:
+              - column:
+                  name: id
+                  value: db66666d-b6cf-4024-baab-2c7336000931
+              - column:
+                  name: title
+                  value: 'Sample Article Title'
+              - column:
+                  name: text
+                  value: 'Sample Article Text'
+              - column:
+                  name: category
+                  value: 1
+        - insert:
+            tableName: category
+            columns:
+              - column:
+                  name: name
+                  value: 'Sample Category'
+              - column:
+                  name: description
+                  value: 'Sample Description'
+        - insert:
+            tableName: comments
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: article_id
+                  value: db66666d-b6cf-4024-baab-2c7336000931
+              - column:
+                  name: text
+                  value: 'Sample Text'
+      rollback:
+        - delete:
+            tableName: articles
+            where: "id = 'db66666d-b6cf-4024-baab-2c7336000931'"
+        - delete:
+            tableName: category
+            where: "name = 'Sample Category'"
+        - delete:
+            tableName: comments
+            where: "id = '1'"
+

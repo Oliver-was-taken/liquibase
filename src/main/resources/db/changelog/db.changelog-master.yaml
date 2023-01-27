@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - includeAll: # Task 9
+      path: /db/changelog/initial
+  - includeAll: # Task 9
+      path: /db/changelog/change-sets

@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet: # Task 5
+      id: 3
+      author: Oliver Jenny
+      preConditions:
+        - onFail: CONTINUE
+        - not:
+            - indexExists:
+                tableName: articles
+                columnNames: title_index
+      changes:
+        - createIndex:
+            tableName: articles
+            indexName: titleIndex
+            column:
+              name: title
+              type: varchar(255)
+      rollback: # Task 10
+        - dropIndex:
+            tableName: articles
+            indexName: titleIndex
